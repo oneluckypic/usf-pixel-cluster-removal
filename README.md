@@ -1,10 +1,10 @@
 # Install Git
 
-(Git Download)[https://git-scm.com/downloads]
+[Git Download](https://git-scm.com/downloads)
 
 # Install Anaconda
 
-(Anaconda Download)[https://www.anaconda.com/products/individual]
+[Anaconda Download](https://www.anaconda.com/products/individual)
 
 # Install usf-mosquitos
 
