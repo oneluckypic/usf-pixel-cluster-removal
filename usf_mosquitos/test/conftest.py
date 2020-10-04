@@ -47,9 +47,9 @@ def via_proj():
 
 @pytest.fixture
 def via_dataframe():
-    columns = ['filename', 'x', 'y', 'width', 'height']
-    data = [['2e89c04f374dc64e1a37f02d0849144d.jpg', 1792, 328, 40, 50],
-             ['2e89c04f374dc64e1a37f02d0849144d.jpg', 2296, 444, 42, 50],
-             ['4ec7caecb917cfb520e58423ca228e63.jpg', 2551, 297, 65, 41],
-             ['4ec7caecb917cfb520e58423ca228e63.jpg', 1534, 437, 41, 39]]
+    columns = ['filename', 'row', 'col', 'width', 'height']
+    data = [['2e89c04f374dc64e1a37f02d0849144d.jpg', 328, 1792, 40, 50],
+            ['2e89c04f374dc64e1a37f02d0849144d.jpg', 444, 2296, 42, 50],
+            ['4ec7caecb917cfb520e58423ca228e63.jpg', 297, 2551, 65, 41],
+            ['4ec7caecb917cfb520e58423ca228e63.jpg', 437, 1534, 41, 39]]
     return pd.DataFrame(data, columns=columns)

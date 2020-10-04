@@ -1,7 +1,8 @@
 
 from setuptools import setup, find_packages
 
-install_requires = ['matplotlib',
+install_requires = ['click',
+                    'matplotlib',
                     'opencv-python',
                     'pandas',
                     'pytest',
