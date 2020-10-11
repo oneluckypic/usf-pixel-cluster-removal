@@ -43,3 +43,7 @@ Options:
                           tiff_deflate, tiff_sgilog, tiff_sgilog24
   --help                  Show this message and exit.
 ```
+
+# Hyperparameter Search Baseline
+
+Simple Metric: 0.5828102683881102
