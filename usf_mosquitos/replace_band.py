@@ -43,5 +43,17 @@ def replace_band(file, band, to_band, rng, prefix, compression):
     im.save(to_file, compression=compression)
 
 
+def quantile_where_clause(quant_df, img):
+    clause = False
+    for i, df in quant_df.groupby('cluster'):
+        df = df.sort_values(by='quantile')
+        blue = np.logical_and(df['b'][0] < img[:, :, 0], img[:, :, 0] < df['b'][1])
+        green = np.logical_and(df['g'][0] < img[:, :, 1], img[:, :, 1] < df['g'][1])
+        red = np.logical_and(df['r'][0] < img[:, :, 2], img[:, :, 2] < df['r'][1])
+        bgr_clause = np.logical_and(blue, np.logical_and(green, red))
+        clause = np.logical_or(clause, bgr_clause)
+    return clause
+
+
 if __name__ == '__main__':
     replace_band()

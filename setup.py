@@ -6,7 +6,8 @@ install_requires = ['click',
                     'opencv-python',
                     'pandas',
                     'pytest',
-                    'pyyaml']
+                    'pyyaml',
+                    'sklearn']
 
 setup(name='usf_mosquitos',
       version='0.0.1',

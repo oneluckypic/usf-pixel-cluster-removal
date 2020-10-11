@@ -15,14 +15,16 @@ def via_proj():
                                          "y":328,
                                          "width":40,
                                          "height":50},
-                                     "region_attributes":{}},
+                                     "region_attributes":
+                                        {"class": "Lepidium"}},
                                     {"shape_attributes":
                                         {"name": "rect",
                                          "x":2296,
                                          "y":444,
                                          "width":42,
                                          "height":50},
-                                     "region_attributes":{}}],
+                                     "region_attributes":
+                                        {"class": "Background"}}],
                         "file_attributes":{}},
                     "4ec7caecb917cfb520e58423ca228e63.jpg9018387":
                         {"filename": "4ec7caecb917cfb520e58423ca228e63.jpg",
@@ -33,23 +35,25 @@ def via_proj():
                                           "y":297,
                                           "width":65,
                                           "height":41},
-                                      "region_attributes":{}},
+                                      "region_attributes":
+                                         {"class": "Background"}},
                                      {"shape_attributes":
                                          {"name": "rect",
                                           "x":1534,
                                           "y":437,
                                           "width":41,
                                           "height":39},
-                                      "region_attributes":{}}],
+                                      "region_attributes":
+                                         {"class": "Lepidium"}}],
                          "file_attributes": {}}}}
     return via_proj
 
 
 @pytest.fixture
 def via_dataframe():
-    columns = ['filename', 'row', 'col', 'width', 'height']
-    data = [['2e89c04f374dc64e1a37f02d0849144d.jpg', 328, 1792, 40, 50],
-            ['2e89c04f374dc64e1a37f02d0849144d.jpg', 444, 2296, 42, 50],
-            ['4ec7caecb917cfb520e58423ca228e63.jpg', 297, 2551, 65, 41],
-            ['4ec7caecb917cfb520e58423ca228e63.jpg', 437, 1534, 41, 39]]
+    columns = ['filename', 'class', 'row', 'col', 'width', 'height']
+    data = [['2e89c04f374dc64e1a37f02d0849144d.jpg', 'Lepidium', 328, 1792, 40, 50],
+            ['2e89c04f374dc64e1a37f02d0849144d.jpg', 'Background', 444, 2296, 42, 50],
+            ['4ec7caecb917cfb520e58423ca228e63.jpg', 'Background', 297, 2551, 65, 41],
+            ['4ec7caecb917cfb520e58423ca228e63.jpg', 'Lepidium', 437, 1534, 41, 39]]
     return pd.DataFrame(data, columns=columns)
