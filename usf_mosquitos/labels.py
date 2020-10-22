@@ -27,14 +27,20 @@ def chip_image(img, boxes_df):
     return [img[box.row:box.row+box.height, box.col:box.col+box.width] for index, box in boxes_df.iterrows()]
 
 
-def labels_to_image_chips(images_dir, df):
+def labels_to_images(images_dir, df):
+    images = [cv2.imread(os.path.join(images_dir, file)) for file in df['filename'].unique()]
+    return list(zip(df['filename'].unique(), images))
+
+
+def labels_to_image_chips(images, df):
     ''' Use box labels to extract image chips.
     Args:
         images_dir: location of image files
         df: labels dataframe
     '''
+    df = df[df['class'] != 'Background']
     chips = []
-    for filename, boxes in df.groupby('filename'):
-        img = cv2.imread(os.path.join(images_dir, filename))
-        chips += chip_image(img, boxes)
+    for filename, image in images:
+        labels = df[df['filename'] == filename]
+        chips += chip_image(image, labels)
     return chips
