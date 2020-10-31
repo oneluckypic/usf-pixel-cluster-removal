@@ -3,8 +3,10 @@ from setuptools import setup, find_packages
 
 install_requires = ['click',
                     'matplotlib',
+                    'numpy',
                     'opencv-python',
                     'pandas',
+                    'pillow',
                     'pytest',
                     'pyyaml',
                     'sklearn']
