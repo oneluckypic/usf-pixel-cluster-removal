@@ -9,7 +9,8 @@ install_requires = ['click',
                     'pillow',
                     'pytest',
                     'pyyaml',
-                    'sklearn']
+                    'sklearn',
+                    'tqdm']
 
 setup(name='usf_mosquitos',
       version='0.0.1',

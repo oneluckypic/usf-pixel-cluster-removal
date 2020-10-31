@@ -1,12 +1,14 @@
 ''' Some code from pyimagesearch
 https://www.pyimagesearch.com/2014/08/18/skin-detection-step-step-example-using-python-opencv/
 '''
-import click
-import cv2
+
 import itertools
-import numpy as np
 import os
 import random
+
+import click
+import cv2
+import numpy as np
 
 from usf_mosquitos.dataframe import dfwrite, dfread
 from usf_mosquitos.imstats import kmeans_on_chip_pixels, quantile_on_kmeans, display_3d_histogram
@@ -24,7 +26,7 @@ def stats():
 @stats.command('hyper')
 @click.option('-d', '--images_dir', type=click.Path(), help='Directory containing images')
 @click.option('-p', '--via_project_file', type=click.Path(), help='Path to VIA project file')
-def weeds(images_dir, via_project_file):
+def hyper(images_dir, via_project_file):
     label_df = via_project_file_to_dataframe(via_project_file)
     images = labels_to_images(images_dir, label_df)
 
@@ -38,6 +40,8 @@ def weeds(images_dir, via_project_file):
 
     parameters = list(itertools.product(k, q, erosion, dilation, blur))
     random.shuffle(parameters)
+    print('Processing ' + str(len(parameters)) + ' combinations.')
+    
     for p in parameters:
         accuracy = algorithm(images, label_df, '', write_image=False,
                              k=p[0], q=p[1],
