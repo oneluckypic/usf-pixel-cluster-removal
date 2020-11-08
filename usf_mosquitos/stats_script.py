@@ -41,12 +41,15 @@ def hyper(images_dir, via_project_file):
     parameters = list(itertools.product(k, q, erosion, dilation, blur))
     random.shuffle(parameters)
     print('Processing ' + str(len(parameters)) + ' combinations.')
-    
+    fh = open('out.txt', 'w')
+
     for p in parameters:
         accuracy = algorithm(images, label_df, '', write_image=False,
                              k=p[0], q=p[1],
                              erosion_kernel=p[2], dilation_kernel=p[3], blur_kernel=p[4])
-        print(str(p) + ', ' + str(accuracy))
+        fh.write(str(p) + ', ' + str(accuracy) + '\n')
+        fh.flush()
+    fh.close()
 
 
 @stats.command('weeds')
@@ -56,15 +59,13 @@ def hyper(images_dir, via_project_file):
 def weeds(images_dir, via_project_file, out_dir):
     label_df = via_project_file_to_dataframe(via_project_file)
     images = labels_to_images(images_dir, label_df)
-    accuracy = algorithm(images, label_df, os.path.join(images_dir, out_dir),
-                         k=15, q=[0.1, 0.9],
-                         erosion_kernel=(11, 11), dilation_kernel=(11, 11), blur_kernel=(11, 11))
+    accuracy = algorithm(images, label_df, os.path.join(images_dir, out_dir))
     print('Accuracy: ' + str(accuracy))
 
 
 def algorithm(images, label_df, out_dir, write_image=True,
-              k=10, q=[0.15, 0.85],
-              erosion_kernel=(5, 5), dilation_kernel=(5, 5), blur_kernel=(3, 3)):
+              k=10, q=[0.1, 0.9],
+              erosion_kernel=(3, 3), dilation_kernel=(11, 11), blur_kernel=(7, 7)):
     chips = labels_to_image_chips(images, label_df)
     kmeans, pixels = kmeans_on_chip_pixels(chips, k=k)
     df = quantile_on_kmeans(kmeans, pixels, q=q)

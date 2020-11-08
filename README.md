@@ -6,11 +6,11 @@
 
 [Anaconda Download](https://www.anaconda.com/products/individual)
 
-# Install usf-mosquitos
+# Use usf-weeds
 
-1. Clone usf-mosquito code
+1. Clone usf-weeds code
 ```bash
-git clone git@github.com:oneluckypic/usf-mosquitos.git
+git clone git@github.com:oneluckypic/usf-weeds.git
 ```
 
 2. Activate conda base environment
@@ -18,32 +18,19 @@ git clone git@github.com:oneluckypic/usf-mosquitos.git
 conda activate base
 ```
 
-# Run Script to Filter Pixel Band
-
-Example:
+3. Print Help
 ```bash
-python replace_band.py -b '[182,200,183,255]' -f SuisunMarsh2020_Orthomosaic_export_WedMay06033950.811478.tif
+python stats_script.py --help
 ```
 
-Print Help:
-```bash
-python replace_band.py --help
+# Purpose
+This is a script to remove certain types of weeds from imagery. The weeds must be labeled in imagery first using VGG Image Annotator (VIA). See labels directory. Then the algorithm will try to characterize the weed pixels using k-means clustering. The weed pixels will be removed using a series of erosion and dilation convolutions on the images.
 
-Usage: replace_band.py [OPTIONS]
+# Hyperparameter Search Results (Top 4 after search 4200 combinations)
 
-Options:
-  -f, --file PATH         Tiff image file.  [required]
-  -b, --band TEXT         List of 4-channel pixels to replace, e.g. '[182, 200, 183, 255]'.  [required]
-  -t, --to-band TEXT      List of 4-channel pixels to replace with.
-  -r, --rng TEXT          band plus or minus range will be replaced.
-  -p, --prefix TEXT       prefix to place on modified Tiff file.
-  -c, --compression TEXT  Compression to use to save Tiff file. Options: raw,
-                          tiff_ccitt, tiff_lzw, jpeg, tiff_adobe_deflate,
-                          tiff_raw_16, packbits, tiff_thunderscan,
-                          tiff_deflate, tiff_sgilog, tiff_sgilog24
-  --help                  Show this message and exit.
-```
-
-# Hyperparameter Search Baseline
-
-Simple Metric: 0.5828102683881102
+| K  | Quantile   | Erosion Kernel | Dilation Kernel | Gaussian Blur Kernel | Score              |
+| -- | ---------- | -------------- | --------------- | -------------------- | ------------------ |
+| 15 | [0.1, 0.9] | (3, 3)         | (11, 11)        | (7, 7)               | 0.7382699128181481 |
+| 15 | [0.1, 0.9] | (3, 3)         | (11, 11)        | (11, 11)             | 0.7308652994827931 |
+| 15 | [0.1, 0.9] | (3, 3)         | (11, 11)        | (3, 3)               | 0.7291169219729912 |
+| 15 | [0.1, 0.9] | (3, 3)         | (11, 11)        | (5, 5)               | 0.7287373520837732 |
