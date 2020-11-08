@@ -12,8 +12,8 @@ install_requires = ['click',
                     'sklearn',
                     'tqdm']
 
-setup(name='usf_mosquitos',
+setup(name='usf_weeds',
       version='0.0.1',
       description='Aides to mosquito habitat identification',
-      packages=['usf_mosquitos'],
+      packages=['usf_weeds'],
       install_requires=install_requires)

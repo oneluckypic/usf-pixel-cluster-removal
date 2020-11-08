@@ -1,6 +1,6 @@
 
 
-from usf_mosquitos.labels import chip_image
+from usf_weeds.labels import chip_image
 
 
 def simple_accuracy(labels_df, mask):

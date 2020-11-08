@@ -10,12 +10,12 @@ import click
 import cv2
 import numpy as np
 
-from usf_mosquitos.dataframe import dfwrite, dfread
-from usf_mosquitos.imstats import kmeans_on_chip_pixels, quantile_on_kmeans, display_3d_histogram
-from usf_mosquitos.imutils import rescale
-from usf_mosquitos.labels import via_project_file_to_dataframe, labels_to_images, labels_to_image_chips
-from usf_mosquitos.metrics import simple_accuracy
-from usf_mosquitos.replace_band import quantile_where_clause
+from usf_weeds.dataframe import dfwrite, dfread
+from usf_weeds.imstats import kmeans_on_chip_pixels, quantile_on_kmeans, display_3d_histogram
+from usf_weeds.imutils import rescale
+from usf_weeds.labels import via_project_file_to_dataframe, labels_to_images, labels_to_image_chips
+from usf_weeds.metrics import simple_accuracy
+from usf_weeds.replace_band import quantile_where_clause
 
 
 @click.group()

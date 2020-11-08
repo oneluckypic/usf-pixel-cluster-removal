@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from usf_mosquitos.metrics import simple_accuracy
+from usf_weeds.metrics import simple_accuracy
 
 def test_simple_accuracy():
 
