@@ -64,7 +64,7 @@ def weeds(images_dir, via_project_file, out_dir):
 
 
 def algorithm(images, label_df, out_dir, write_image=True,
-              k=10, q=[0.1, 0.9],
+              k=15, q=[0.1, 0.9],
               erosion_kernel=(3, 3), dilation_kernel=(11, 11), blur_kernel=(7, 7)):
     chips = labels_to_image_chips(images, label_df)
     kmeans, pixels = kmeans_on_chip_pixels(chips, k=k)
