@@ -2,7 +2,7 @@
 import pandas as pd
 import yaml
 
-from usf_weeds.labels import via_dict_to_dataframe
+from usf_pcr.labels import via_dict_to_dataframe
 
 
 def test_via_dict_to_dataframe(via_proj, via_dataframe):

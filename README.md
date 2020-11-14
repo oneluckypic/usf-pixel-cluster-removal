@@ -6,11 +6,11 @@
 
 [Anaconda Download](https://www.anaconda.com/products/individual)
 
-# Use usf-weeds
+# Use usf-pcr
 
-1. Clone usf-weeds code
+1. Clone usf-pcr code
 ```bash
-git clone git@github.com:oneluckypic/usf-weeds.git
+git clone git@github.com:oneluckypic/usf-pcr.git
 ```
 
 2. Activate conda base environment
@@ -20,17 +20,8 @@ conda activate base
 
 3. Print Help
 ```bash
-python stats_script.py --help
+python pixel_cluster_removal.py --help
 ```
 
 # Purpose
-This is a script to remove certain types of weeds from imagery. The weeds must be labeled in imagery first using VGG Image Annotator (VIA). See labels directory. Then the algorithm will try to characterize the weed pixels using k-means clustering. The weed pixels will be removed using a series of erosion and dilation convolutions on the images.
-
-# Hyperparameter Search Results (Top 4 after search 4200 combinations)
-
-| K  | Quantile   | Erosion Kernel | Dilation Kernel | Gaussian Blur Kernel | Score              |
-| -- | ---------- | -------------- | --------------- | -------------------- | ------------------ |
-| 15 | [0.1, 0.9] | (3, 3)         | (11, 11)        | (7, 7)               | 0.7382699128181481 |
-| 15 | [0.1, 0.9] | (3, 3)         | (11, 11)        | (11, 11)             | 0.7308652994827931 |
-| 15 | [0.1, 0.9] | (3, 3)         | (11, 11)        | (3, 3)               | 0.7291169219729912 |
-| 15 | [0.1, 0.9] | (3, 3)         | (11, 11)        | (5, 5)               | 0.7287373520837732 |
+This software will cluster pixel ranges together that are labeled using VGG Image Annotator (VIA). It will then remove those clustered pixel ranges from images. The pixel removal technique is based on [this blog post](https://www.pyimagesearch.com/2014/08/18/skin-detection-step-step-example-using-python-opencv/) on PyImageSearch.com. The only difference is that the pixel ranges to be removed are determined using k-means clustering of the pixels inside the labeled polygons. Images are split up into patches, with each patch analyzed individually, similarly to the how the python package [patchify](https://github.com/dovahcrow/patchify.py) works.

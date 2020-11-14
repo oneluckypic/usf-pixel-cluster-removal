@@ -10,12 +10,12 @@ import click
 import cv2
 import numpy as np
 
-from usf_weeds.dataframe import dfwrite, dfread
-from usf_weeds.imstats import kmeans_on_chip_pixels, quantile_on_kmeans, display_3d_histogram
-from usf_weeds.imutils import rescale
-from usf_weeds.labels import via_project_file_to_dataframe, labels_to_images, labels_to_image_chips
-from usf_weeds.metrics import simple_accuracy
-from usf_weeds.replace_band import quantile_where_clause
+from usf_pcr.dataframe import dfwrite, dfread
+from usf_pcr.imstats import kmeans_on_chip_pixels, quantile_on_kmeans, display_3d_histogram
+from usf_pcr.imutils import rescale
+from usf_pcr.labels import via_project_file_to_dataframe, labels_to_images, labels_to_image_chips
+from usf_pcr.metrics import simple_accuracy
+from usf_pcr.replace_band import quantile_where_clause
 
 
 @click.group()
@@ -52,11 +52,11 @@ def hyper(images_dir, via_project_file):
     fh.close()
 
 
-@stats.command('weeds')
+@stats.command('pcr')
 @click.option('-d', '--images_dir', type=click.Path(), help='Directory containing images')
 @click.option('-p', '--via_project_file', type=click.Path(), help='Path to VIA project file')
 @click.option('-o', '--out_dir', type=click.Path(), default='replace_band')
-def weeds(images_dir, via_project_file, out_dir):
+def pcr(images_dir, via_project_file, out_dir):
     label_df = via_project_file_to_dataframe(via_project_file)
     images = labels_to_images(images_dir, label_df)
     accuracy = algorithm(images, label_df, os.path.join(images_dir, out_dir))
@@ -119,7 +119,7 @@ def via(via_project_file):
     md = via_dict['_via_img_metadata']
     for image in md.values():
         for region in image['regions']:
-            region['region_attributes']['class'] = 'Lepidium'
+            region['region_attributes']['class'] = 'Remove'
 
     with open(via_project_file, 'w') as file:
         json.dump(via_dict, file, indent=4, sort_keys=True)

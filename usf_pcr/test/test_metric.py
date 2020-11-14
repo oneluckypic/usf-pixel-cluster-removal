@@ -3,11 +3,11 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from usf_weeds.metrics import simple_accuracy
+from usf_pcr.metrics import simple_accuracy
 
 def test_simple_accuracy():
 
-    data = [['0.jpg', 'Lepidium', 2, 2, 3, 2],
+    data = [['0.jpg', 'Remove', 2, 2, 3, 2],
             ['0.jpg', 'Background', 6, 7, 3, 4]]
     df = pd.DataFrame(data, columns=['filename', 'class', 'row', 'col', 'width', 'height'])
 

@@ -12,8 +12,8 @@ install_requires = ['click',
                     'sklearn',
                     'tqdm']
 
-setup(name='usf_weeds',
+setup(name='usf_pcr',
       version='0.0.1',
-      description='Aides to mosquito habitat identification',
-      packages=['usf_weeds'],
+      description='Removes clusters of pixels based on labels image regions',
+      packages=['usf_pcr'],
       install_requires=install_requires)
