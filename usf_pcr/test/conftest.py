@@ -16,7 +16,7 @@ def via_proj():
                                          "width":40,
                                          "height":50},
                                      "region_attributes":
-                                        {"class": "Lepidium"}},
+                                        {"class": "Remove"}},
                                     {"shape_attributes":
                                         {"name": "rect",
                                          "x":2296,
@@ -44,7 +44,7 @@ def via_proj():
                                           "width":41,
                                           "height":39},
                                       "region_attributes":
-                                         {"class": "Lepidium"}}],
+                                         {"class": "Remove"}}],
                          "file_attributes": {}}}}
     return via_proj
 
@@ -52,8 +52,8 @@ def via_proj():
 @pytest.fixture
 def via_dataframe():
     columns = ['filename', 'class', 'row', 'col', 'width', 'height']
-    data = [['2e89c04f374dc64e1a37f02d0849144d.jpg', 'Lepidium', 328, 1792, 40, 50],
+    data = [['2e89c04f374dc64e1a37f02d0849144d.jpg', 'Remove', 328, 1792, 40, 50],
             ['2e89c04f374dc64e1a37f02d0849144d.jpg', 'Background', 444, 2296, 42, 50],
             ['4ec7caecb917cfb520e58423ca228e63.jpg', 'Background', 297, 2551, 65, 41],
-            ['4ec7caecb917cfb520e58423ca228e63.jpg', 'Lepidium', 437, 1534, 41, 39]]
+            ['4ec7caecb917cfb520e58423ca228e63.jpg', 'Remove', 437, 1534, 41, 39]]
     return pd.DataFrame(data, columns=columns)
